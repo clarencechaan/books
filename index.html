@@ -14,6 +14,15 @@ table, th, td {
   visibility: hidden;
 }
 
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 800px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
 </style>
 <script src="script.js" defer></script>
 <body>
@@ -38,7 +47,7 @@ table, th, td {
         <input type="submit" value="Submit">
       </form>
     </div>
-    <table style="width: 800px;" id="table">
+    <table class="styled-table" id="table">
         <tr>
           <th>Title</th>
           <th>Author</th>
