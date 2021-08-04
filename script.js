@@ -15,6 +15,10 @@ Book.prototype.info = function() {
     }
 }
 
+Book.prototype.toggleRead = function() {
+    this.read ? this.read = false : this.read = true;
+}
+
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     book.index = myLibrary.length;
@@ -43,6 +47,10 @@ function addBookToTable(book) {
     const pages = document.createElement("td");
     const read = document.createElement("td");
     const removeBtn = document.createElement("button");
+    const readBtn = document.createElement("button");
+    const td1 = document.createElement("td");
+    const td2 = document.createElement("td");
+
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = book.pages;
@@ -51,11 +59,20 @@ function addBookToTable(book) {
     removeBtn.className = "remove-btn";
     removeBtn.id = book.index;
     removeBtn.onclick = function () { removeBook(removeBtn.id) };
+    readBtn.textContent = "Toggle Read";
+    readBtn.onclick = function() {
+        book.toggleRead();
+        displayBooksFromLibrary();
+    }
+
     tr.appendChild(title);
     tr.appendChild(author);
     tr.appendChild(pages);
     tr.appendChild(read);
-    tr.appendChild(removeBtn);
+    td1.appendChild(removeBtn);
+    td2.appendChild(readBtn);
+    tr.append(td1);
+    tr.append(td2);
     table.appendChild(tr); 
 }
 
@@ -76,16 +93,21 @@ function addHeadersToTable() {
     const pages = document.createElement("th");
     const read = document.createElement("th");
     const remove = document.createElement("th");
+    const toggleRead = document.createElement("th");
+
     title.textContent = "Title";
     author.textContent = "Author";
     pages.textContent = "Pages";
     read.textContent = "Read";
     remove.textContent = "Remove";
+    toggleRead.textContent = "Toggle Read";
+
     tr.appendChild(title);
     tr.appendChild(author);
     tr.appendChild(pages);
     tr.appendChild(read);
     tr.appendChild(remove);
+    tr.appendChild(toggleRead);
     table.appendChild(tr); 
 }
 
